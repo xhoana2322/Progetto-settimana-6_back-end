@@ -20,10 +20,12 @@ class CorsiFactory extends Factory
         $end_time = clone $start_time;
         $end_time->modify('+1 hour');
 
+        $settimana=['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'];
+
         return [
             'titolo' => fake()->word(),
             'descrizione' => fake()->text(200),
-            'giorno' => fake()->dateTime(),
+            'giorno' => fake()->randomElement($settimana),
             'orario_inizio' => $start_time,
             'orario_fine' => $end_time,
         ];

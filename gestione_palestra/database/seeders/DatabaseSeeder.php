@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         //     'password' => Hash::make('Pa$$w0rd!')
         // ]);
 
-        // $this->call([
-        //     UserSeeder::class,
-        //     CorsiSeeder::class,
-        //     PrenotazioniSeeder::class
-        // ]);
+        $this->call([
+            // UserSeeder::class,
+            CorsiSeeder::class,
+            // PrenotazioniSeeder::class
+        ]);
     }
 }

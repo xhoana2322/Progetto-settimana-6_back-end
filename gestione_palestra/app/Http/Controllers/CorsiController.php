@@ -13,7 +13,8 @@ class CorsiController extends Controller
      */
     public function index()
     {
-        //
+        $corsi = Corsi::all();
+        return $corsi;
     }
 
     /**

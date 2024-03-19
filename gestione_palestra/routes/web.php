@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CorsiController;
+use App\Http\Controllers\PrenotazioniController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +31,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::resource('/corsi', CorsiController::class);
+Route::resource('/prenotazioni', PrenotazioniController::class);
