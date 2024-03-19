@@ -16,7 +16,7 @@ class CorsiFactory extends Factory
      */
     public function definition(): array
     {
-        $start_time = fake()->dateTime();
+        $start_time = fake()->dateTimeBetween('now', '+2 month');
         $end_time = clone $start_time;
         $end_time->modify('+1 hour');
 

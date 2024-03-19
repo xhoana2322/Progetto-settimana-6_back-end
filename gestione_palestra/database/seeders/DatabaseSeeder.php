@@ -17,15 +17,16 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // User::factory()->create([
+        //     'isAdmin' => true,
         //     'name' => 'Admin',
         //     'email' => 'admin@example.com',
         //     'password' => Hash::make('Pa$$w0rd!')
         // ]);
 
         $this->call([
-            // UserSeeder::class,
+            UserSeeder::class,
             CorsiSeeder::class,
-            // PrenotazioniSeeder::class
+            PrenotazioniSeeder::class
         ]);
     }
 }
