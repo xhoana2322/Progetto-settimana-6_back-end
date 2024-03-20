@@ -26,7 +26,8 @@ class PrenotazioniController extends Controller
         //     return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
         // }
 
-        $prenotazioni = Prenotazioni::where('users_id', Auth::user()->id)->with('corsi', 'user')->get();
+        $prenotazioni = Prenotazioni::with('corsi')->get();
+        $prenotazioni->load('corsi');
         dd($prenotazioni);
         return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
 
