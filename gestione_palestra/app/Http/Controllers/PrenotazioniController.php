@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Prenotazioni;
 use App\Http\Requests\StorePrenotazioniRequest;
 use App\Http\Requests\UpdatePrenotazioniRequest;
@@ -13,7 +15,12 @@ class PrenotazioniController extends Controller
      */
     public function index()
     {
-        //
+        // if (Auth::check()) {
+            $prenotazioni = DB::table('prenotazionis')->get();
+            return view('prenotazioni', ['prenotazioni' => $prenotazioni], ['user' => Auth::user()]);
+        // } else {
+        //     return redirect()->route('login');
+        // }
     }
 
     /**

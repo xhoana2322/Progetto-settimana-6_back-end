@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Corsi;
 use App\Http\Requests\StoreCorsiRequest;
 use App\Http\Requests\UpdateCorsiRequest;
@@ -13,8 +15,12 @@ class CorsiController extends Controller
      */
     public function index()
     {
-        $corsi = Corsi::all();
-        return $corsi;
+        if (Auth::check()) {
+            $corsi = DB::table('corsis')->get();
+            return view('corsi', ['corsi' => $corsi], ['user' => Auth::user()]);
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     /**
@@ -38,7 +44,7 @@ class CorsiController extends Controller
      */
     public function show(Corsi $corsi)
     {
-        //
+        // return view('dettagliocorsi', ['corsi' => $corsi]);
     }
 
     /**
