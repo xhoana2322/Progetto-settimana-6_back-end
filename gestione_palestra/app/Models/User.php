@@ -14,9 +14,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    // public function corsi(): HasMany {
-    //     return $this->HasMany(Corsi::class);
-    // }
+    public function corsi(): HasMany {
+        return $this->HasMany(Corsi::class, 'corsis_id');
+    }
 
     public function prenotazioni(): HasManyThrough {
         return $this->hasManyThrough(Prenotazioni::class, Corsi::class);

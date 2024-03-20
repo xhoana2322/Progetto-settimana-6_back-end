@@ -18,20 +18,20 @@ class PrenotazioniController extends Controller
      */
     public function index()
     {
-        // if (Auth::user()->isAdmin == 1) {
-        //     $prenotazioni = Corsi::load('prenotazioni', 'user')->get();
-        //     return view('prenotazioniAdmin', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
-        // } else {
-        //     $prenotazioni = Prenotazioni::where('users_id', Auth::user()->id)->with('corsi', 'user')->get();
-        //     return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
-        // }
+        if (Auth::user()->isAdmin == 1) {
+            $prenotazioni = Prenotazioni::with('corsi')->with('user')->get();
+        } else {
+            $prenotazioni = Prenotazioni::where('users_id', Auth::user()->id)->with('corsi')->with('user')->get();
+        }
 
-        $prenotazioni = Prenotazioni::with('corsi')->get();
-        $prenotazioni->load('corsi');
-        dd($prenotazioni);
-        return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
+        return view('prenotazioni', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
 
-        // return view('prenotazioni', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
+
+        // $prenotazioni = Prenotazioni::with('corsi')->get();
+        // $prenotazioni->load('corsi');
+        // dd($prenotazioni);
+        // return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
+
             
             // $prenotazioni = Prenotazioni::where('users_id', Auth::user()->id)->get();
             // $prenotazioni->load('corsi');

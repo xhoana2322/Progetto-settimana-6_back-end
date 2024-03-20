@@ -12,11 +12,11 @@ class Prenotazioni extends Model
     use HasFactory;
 
     public function corsi(): BelongsTo {
-        return $this->BelongsTo(Corsi::class);
+        return $this->BelongsTo(Corsi::class, 'corsis_id');
     }
 
     public function user(): BelongsTo {
-        return $this->BelongsTo(User::class);
+        return $this->BelongsTo(User::class, 'users_id');
     }
 
 }
