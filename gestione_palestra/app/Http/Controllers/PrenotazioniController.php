@@ -20,24 +20,11 @@ class PrenotazioniController extends Controller
     {
         if (Auth::user()->isAdmin == 1) {
             $prenotazioni = Prenotazioni::with('corsi')->with('user')->get();
+            return view('prenotazioniAdmin', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
         } else {
             $prenotazioni = Prenotazioni::where('users_id', Auth::user()->id)->with('corsi')->with('user')->get();
+            return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
         }
-
-        return view('prenotazioni', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
-
-
-        // $prenotazioni = Prenotazioni::with('corsi')->get();
-        // $prenotazioni->load('corsi');
-        // dd($prenotazioni);
-        // return view('prenotazioniUser', ['prenotazioni' => $prenotazioni, 'user' => Auth::user()]);
-
-            
-            // $prenotazioni = Prenotazioni::where('users_id', Auth::user()->id)->get();
-            // $prenotazioni->load('corsi');
-            // $prenotazioni->load('user');
-
-            // return view('prenotazioni', ['prenotazioni' => $prenotazioni], ['user' => Auth::user()]);
     }
 
     /**
@@ -77,7 +64,9 @@ class PrenotazioniController extends Controller
      */
     public function update(UpdatePrenotazioniRequest $request, Prenotazioni $prenotazioni)
     {
-        //
+        // questa funzione è da rivedere.....
+        $prenotazioni->update(['isPending' => $request->input('isPending')]);
+        return redirect()->back()->with('success', 'Prenotazione confermata con successo.');
     }
 
     /**
@@ -85,6 +74,8 @@ class PrenotazioniController extends Controller
      */
     public function destroy(Prenotazioni $prenotazioni)
     {
-        //
+        // funzione va
+        $prenotazioni->delete();
+        return redirect()->back()->with('success', 'Prenotazione eliminata con successo.');
     }
 }

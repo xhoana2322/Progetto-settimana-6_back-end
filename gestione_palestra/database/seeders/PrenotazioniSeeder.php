@@ -13,6 +13,6 @@ class PrenotazioniSeeder extends Seeder
      */
     public function run(): void
     {
-        Prenotazioni::factory(5)->create();
+        Prenotazioni::factory(8)->create();
     }
 }

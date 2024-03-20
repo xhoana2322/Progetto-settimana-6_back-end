@@ -9,14 +9,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                <table class="table align-middle mt-4">
-                    @if($prenotazioni->count() > 0)
+
+
+
+                @if($prenotazioni->count() > 0)
                     <table class="table table-striped table-hover">
                         <thead class="table-light align-middle text-center">
                             <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Titolo Corso</th>
-                            <th scope="col">Utente</th>
+                            <th scope="col">Corso</th>
+                            <th scope="col">Giorno</th>
+                            <th scope="col">Orario</th>
                             <th scope="col">Stato</th>
                             <th scope="col">Azioni</th>
                             </tr>
@@ -24,13 +26,20 @@
                         <tbody class="table-group-divider text-center align-middle">
                                 @foreach($prenotazioni as $value)
                                     <tr>
-                                        <td>{{ $value->id }}</td>
                                         <td>{{ $value->corsi->titolo}}</td>
-                                        <td>{{ $value->user->name }}</td>
-                                        <td>In attesa di conferma</td>
+                                        <td>{{ $value->corsi->giorno}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($value->corsi->orario_inizio)->format('H') }}:00 - {{ \Carbon\Carbon::parse($value->corsi->orario_fine)->format('H') }}:00</td>
+                                        @if($value->is_pending == 1)
+                                            <td>In attesa di conferma</td>
+                                        @else 
+                                            <td>Confermata</td>
+                                        @endif
                                         <td>
-                                            <a type="button" class="btn btn-outline-success my-2 w-100" href="/prenotazioni/{{$value->id}}">Conferma</a>
-                                            <a type="button" class="btn btn-outline-danger my-2 w-100" href="/prenotazioni/{{$value->id}}">Elimina</a>
+                                        <form method="POST" action="{{ route('prenotazioni.destroy', $value->id) }}" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-outline-dark my-2 w-100">Annulla</button>
+                                            </form> 
                                         </td>
                                     </tr>
                                 @endforeach
@@ -39,8 +48,6 @@
                         </tbody>
                     </table>
                     @endif
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

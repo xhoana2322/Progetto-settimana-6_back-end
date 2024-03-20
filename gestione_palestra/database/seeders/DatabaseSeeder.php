@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            UserSeeder::class,
-            CorsiSeeder::class,
+            // UserSeeder::class,
+            // CorsiSeeder::class,
             PrenotazioniSeeder::class
         ]);
     }
