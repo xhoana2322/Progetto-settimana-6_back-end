@@ -19,7 +19,7 @@ class User extends Authenticatable
     }
 
     public function prenotazioni(): HasManyThrough {
-        return $this->hasManyThrough(Corsi::class, Prenotazioni::class);
+        return $this->hasManyThrough(Prenotazioni::class, Corsi::class);
     }
 
     /**

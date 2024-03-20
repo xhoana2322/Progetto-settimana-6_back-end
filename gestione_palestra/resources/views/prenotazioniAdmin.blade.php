@@ -13,24 +13,14 @@
                         <thead class="table-light align-middle text-center">
                             <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">users_id</th>
-                            <th scope="col">corsis_id</th>
+                            <th scope="col">user name</th>
+                            <th scope='col'>titolo corso</th>
                             <th scope="col">is_pending</th>
                             <!-- <th scope="col">Azioni</th> -->
                             </tr>
                         </thead>
                         <tbody class="table-group-divider text-center">
-                            @if($prenotazioni)
-                                @foreach($prenotazioni as $key => $value)
-                                    <tr>
-                                        <th scope="row">{{$value->id}}</th>
-                                        <td  class="text-center">{{ $value->users_id }}</td>
-                                        <td>{{$value->corsis_id}}</td>
-                                        <td>{{ $value->isPending }}</td>
-                                        
-                                    </tr>
-                                @endforeach
-                            @endif
+                            <?php dd($prenotazioni->toArray()) ?>
                         </tbody>
                     </table>
                 </div>

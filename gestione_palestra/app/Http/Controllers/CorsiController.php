@@ -44,7 +44,7 @@ class CorsiController extends Controller
      */
     public function show(Corsi $corsi)
     {
-        // return view('dettagliocorsi', ['corsi' => $corsi]);
+        return view('dettagliocorso', ['corsi' => $corsi], ['user' => Auth::user()]);
     }
 
     /**
