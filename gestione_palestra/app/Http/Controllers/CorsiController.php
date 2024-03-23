@@ -28,7 +28,7 @@ class CorsiController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -36,7 +36,17 @@ class CorsiController extends Controller
      */
     public function store(StoreCorsiRequest $request)
     {
-        //
+        $new_data = $request->only('titolo', 'descrizione', 'giorno', 'orario_inizio', 'orario_fine');
+
+        $corsi = new Corsi();
+        $corsi->titolo = $new_data['titolo'];
+        $corsi->descrizione = $new_data['descrizione'];
+        $corsi->giorno = $new_data['giorno'];
+        $corsi->orario_inizio = $new_data['orario_inizio'];
+        $corsi->orario_fine = $new_data['orario_fine'];
+        $corsi->save();
+
+        return redirect()->route('corsi.index')->with('success', 'Corso aggiunto con successo!');
     }
 
     /**
@@ -68,6 +78,7 @@ class CorsiController extends Controller
      */
     public function destroy(Corsi $corsi)
     {
-        //
+        $corsi->delete();
+        return redirect()->back()->with('success', 'Corso eliminato con successo.');
     }
 }

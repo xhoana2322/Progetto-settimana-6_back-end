@@ -40,7 +40,10 @@ class PrenotazioniController extends Controller
      */
     public function store(StorePrenotazioniRequest $request)
     {
-        //
+        // $data = $request->only('corsi_id', 'users_id', 'isPending');
+        // Prenotazioni::create($data);
+
+        // return redirect()->route('prenotazioni.index')->with('success', 'Prenotazione creata con successo!');
     }
 
     /**

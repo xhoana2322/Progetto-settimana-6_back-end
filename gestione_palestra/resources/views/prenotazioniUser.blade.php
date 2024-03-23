@@ -35,10 +35,10 @@
                                             <td>Confermata</td>
                                         @endif
                                         <td>
-                                        <form method="POST" action="{{ route('prenotazioni.destroy', $value->id) }}" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-outline-dark my-2 w-100">Annulla</button>
+                                            <form method="POST" action="{{ route('prenotazioni.destroy', $value->id) }}" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-dark my-2 w-100">Annulla</button>
                                             </form> 
                                         </td>
                                     </tr>
